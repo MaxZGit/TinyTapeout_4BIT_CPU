@@ -1493,31 +1493,39 @@ module four_bit_cpu_board
     .out_pins_o(\cpu.out_pins_o ));
 endmodule
 
-module tt_um_four_bit_cpu_top_level(
-  input  wire [7:0] ui_in,    // Dedicated inputs
-  output wire [7:0] uo_out,   // Dedicated outputs
-  input  wire [7:0] uio_in,   // IOs: Input path
-  output wire [7:0] uio_out,  // IOs: Output path
-  output wire [7:0] uio_oe,   // IOs: Enable path (active high: 0=input, 1=output)
-  input  wire       ena,      // will go high when the design is enabled
-  input  wire       clk,      // clock
-  input  wire       rst_n     // reset_n - low to reset
+module tt_um_four_bit_cpu_top_level (
+    input  wire [7:0] ui_in,    // Dedicated inputs
+    output wire [7:0] uo_out,   // Dedicated outputs
+    input  wire [7:0] uio_in,   // IOs: Input path
+    output wire [7:0] uio_out,  // IOs: Output path
+    output wire [7:0] uio_oe,   // IOs: Enable path
+    input  wire       ena,      // design enable
+    input  wire       clk,      // clock
+    input  wire       rst_n     // reset_n
 );
 
-  // Map TinyTapeout ports to your design ports
-  wire [3:0] in_pins   = ui_in[3:0];   // use lower 4 bits of ui_in
-  wire       bl_programm = ui_in[4];   // example mapping
-  wire [3:0] bl_data     = uio_in[3:0];
-  wire [3:0] bl_address  = uio_in[7:4];
-  wire       bl_we       = ui_in[5];   // write enable from ui_in[5]
-
+  // Internal connection wires
   wire [3:0] cpu_out_pins;
 
-    // Drive outputs back into TT signals
-  assign uo_out[3:0] = cpu_out_pins; // map CPU outputs to lower 4 bits
-  assign uo_out[7:4] = 4'b0000;      // unused
+  // Instantiate your CPU board here!
+  four_bit_cpu_board cpu_board (
+    .clk_i(clk),
+    .reset_i(~rst_n),
+    .in_pins_i(ui_in[3:0]),
+    .bl_programm_i(ui_in[4]),
+    .bl_data_i(uio_in[3:0]),
+    .bl_address_i(uio_in[7:4]),
+    .bl_write_en_mem_i(ui_in[5]),
+    .out_pins_o(cpu_out_pins)
+  );
 
-  assign uio_out = 8'b0;             // unused
-  assign uio_oe  = 8'b00000000;      // all IOs are inputs unless needed
+  // Map outputs
+  assign uo_out[3:0] = cpu_out_pins;
+  assign uo_out[7:4] = 4'b0000;
+
+  // No bidirectional IOs used
+  assign uio_out = 8'b0;
+  assign uio_oe  = 8'b0;
+
 endmodule
 
