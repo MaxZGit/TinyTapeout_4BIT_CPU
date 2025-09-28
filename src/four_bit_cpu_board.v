@@ -1493,7 +1493,7 @@ module four_bit_cpu_board
     .out_pins_o(\cpu.out_pins_o ));
 endmodule
 
-module tt_four_bit_cpu_top_level(
+module tt_um_four_bit_cpu_top_level(
   input  wire [7:0] ui_in,    // Dedicated inputs
   output wire [7:0] uo_out,   // Dedicated outputs
   input  wire [7:0] uio_in,   // IOs: Input path
