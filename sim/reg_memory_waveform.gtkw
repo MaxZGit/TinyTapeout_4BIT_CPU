@@ -1,0 +1,83 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Sat Oct  4 16:59:08 2025
+[*]
+[dumpfile] "/foss/designs/Entwurf Integrierter Schaltungen/TinyTapeout_4Bit_CPU/sim/reg_memory_tb.vcd"
+[dumpfile_mtime] "Sat Oct  4 16:56:10 2025"
+[dumpfile_size] 15682
+[savefile] "/foss/designs/Entwurf Integrierter Schaltungen/TinyTapeout_4Bit_CPU/sim/reg_memory_waveform.gtkw"
+[timestart] 81800
+[size] 1536 875
+[pos] -27 -24
+*-16.200001 465000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[markername] AA
+[markername] BB
+[markername] CC
+[markername] DD
+[markername] EE
+[markername] FF
+[markername] GG
+[markername] HH
+[markername] II
+[markername] JJ
+[markername] KK
+[markername] LL
+[markername] MM
+[markername] NN
+[markername] OO
+[markername] PP
+[markername] QQ
+[markername] RR
+[markername] SS
+[markername] TT
+[markername] UU
+[markername] VV
+[markername] WW
+[markername] XX
+[markername] YY
+[markername] ZZ
+[treeopen] reg_memory_tb.
+[sst_width] 297
+[signals_width] 231
+[sst_expanded] 1
+[sst_vpaned_height] 403
+@28
+reg_memory_tb.reset_tb
+reg_memory_tb.clk_tb
+@24
+reg_memory_tb.dut.addr_i[3:0]
+@28
+reg_memory_tb.write_en_tb
+@24
+reg_memory_tb.data_in_tb[3:0]
+@28
+reg_memory_tb.read_en_tb
+@24
+reg_memory_tb.data_out_tb[3:0]
+reg_memory_tb.dut.\reg_vals[0][3:0]
+reg_memory_tb.dut.\reg_vals[1][3:0]
+reg_memory_tb.dut.\reg_vals[2][3:0]
+reg_memory_tb.dut.\reg_vals[3][3:0]
+reg_memory_tb.dut.\reg_vals[4][3:0]
+reg_memory_tb.dut.\reg_vals[5][3:0]
+reg_memory_tb.dut.\reg_vals[6][3:0]
+reg_memory_tb.dut.\reg_vals[7][3:0]
+reg_memory_tb.dut.\reg_vals[8][3:0]
+reg_memory_tb.dut.\reg_vals[9][3:0]
+reg_memory_tb.dut.\reg_vals[10][3:0]
+reg_memory_tb.dut.\reg_vals[11][3:0]
+reg_memory_tb.dut.\reg_vals[12][3:0]
+reg_memory_tb.dut.\reg_vals[13][3:0]
+@c00024
+reg_memory_tb.dut.\reg_vals[14][3:0]
+@28
+(0)reg_memory_tb.dut.\reg_vals[14][3:0]
+(1)reg_memory_tb.dut.\reg_vals[14][3:0]
+(2)reg_memory_tb.dut.\reg_vals[14][3:0]
+(3)reg_memory_tb.dut.\reg_vals[14][3:0]
+@1401204
+-group_end
+@25
+reg_memory_tb.dut.\reg_vals[15][3:0]
+[pattern_trace] 1
+[pattern_trace] 0
