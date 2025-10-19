@@ -59,25 +59,25 @@ module uart_rx #(
         case (rx_state)
             stIDLE: begin
                 // wait for start bit
-                if (rx_i = 0)
+                if (rx_i == 0)
                     next_rx_state = stSTARTBIT;
             end
 
             stSTARTBIT: begin
                 // wait for baud counter to count 1 bit
-                if (baud_counter_val = BAUD_COUNTS_PER_BIT)
+                if (baud_counter_val == BAUD_COUNTS_PER_BIT)
                     next_rx_state = stRECEIVING;
             end
 
             stRECEIVING: begin
                 // store data at half baud counter val
-                if (rx_counter_val = UART_DATA_LENGTH - 1)
+                if (rx_counter_val == UART_DATA_LENGTH - 1)
                     next_rx_state = stSTOPBIT;
             end
 
             stSTOPBIT: begin
                 // wait for 1 bit
-                if (baud_counter_val = BAUD_COUNTS_PER_BIT)
+                if (baud_counter_val == BAUD_COUNTS_PER_BIT)
                     next_rx_state = stIDLE;
             end
         endcase
@@ -101,7 +101,7 @@ module uart_rx #(
         next_rx_counter_val = rx_counter_val;
         
         if (rx_state == stRECEIVING) begin
-            if (baud_counter_val = BAUD_COUNTS_PER_BIT) // count up after a full bit
+            if (baud_counter_val == BAUD_COUNTS_PER_BIT) // count up after a full bit
                 next_rx_counter_val = rx_counter_val + 1;
         end else begin // reset if not in receiving state
             next_baud_counter_val = {BAUD_RATE_COUNTER_BITWIDTH{1'b0}};
