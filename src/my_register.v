@@ -10,7 +10,7 @@ module my_register #(
 
     reg [REGISTER_WIDTH-1:0] reg_val;
 
-    always @(posedge clk_i, reset_i) begin
+    always @(posedge clk_i or posedge reset_i) begin
         if (reset_i)
             reg_val <= {REGISTER_WIDTH{1'b0}};
         else if (write_en_i)

@@ -9,7 +9,7 @@ module half_adder (
 );
 
     // sum logic
-    assign sum_o   = a_i ^ b_i;
+    assign sum_o = a_i ^ b_i;
 
     // carry logic
     assign carry_o = a_i & b_i;

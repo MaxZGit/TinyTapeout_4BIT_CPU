@@ -23,7 +23,7 @@ module alu #(
     assign or_result = a_i | b_i;
 
     // OPERATION CODE MUS
-    always @(sum, xor_result, and_result, or_result) begin
+    always @(sum, xor_result, and_result, or_result, oc_i) begin
         // standard assignment
         result_o = {ALU_BIT_WIDTH{1'bz}};
 

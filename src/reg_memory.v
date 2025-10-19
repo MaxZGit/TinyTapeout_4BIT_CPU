@@ -36,44 +36,76 @@ module reg_memory #(
     integer i;
 
     reg [REGISTER_WIDTH-1:0] reg_vals [0:MEMORY_REGISTERS-1];
-    reg [REGISTER_WIDTH-1:0] next_reg_vals [0:MEMORY_REGISTERS-1];
+    //reg [REGISTER_WIDTH-1:0] next_reg_vals [0:MEMORY_REGISTERS-1];
 
-    // write logic (combinatorial)
-    always @(*) begin
-        // standard assignment
-        for (i = 0; i < MEMORY_REGISTERS; i = i + 1) begin
-            next_reg_vals[i] = reg_vals[i];
-        end 
+    // ----------------------------
+    // Combinational next-state logic
+    // ----------------------------
 
-        if (write_en_i) begin
-            next_reg_vals[addr_i] = data_i;    
-        end
-    end
-
-    // read logic (combinatorial)
-    always @(*) begin
-        // standard assignment
-        data_o = {REGISTER_WIDTH{1'b0}};
-
-        if (read_en_i) begin
-            data_o = reg_vals[addr_i];    
-        end
-    end
-
-    always @(posedge clk_i, reset_i) begin
+    always @(posedge clk_i or posedge reset_i) begin
         if (reset_i) begin
             reg_vals[0]  <= OUT_INSTR; 
             reg_vals[1]  <= INC_INSTR;
-            reg_vals[2]  <= JC_INSTR; 
-            reg_vals[3]  <= SUB_INSTR;
-            reg_vals[4]  <= JMP_INSTR; 
+            reg_vals[2]  <= JMP_INSTR; 
+            reg_vals[3]  <= 4'b0000;
+            reg_vals[4]  <= NOP_INSTR; 
             reg_vals[5]  <= NOP_INSTR; 
-            reg_vals[6]  <= OUT_INSTR; 
-            reg_vals[7]  <= DEC_INSTR;
-            reg_vals[8]  <= JZ_INSTR; 
+            reg_vals[6]  <= NOP_INSTR; 
+            reg_vals[7]  <= NOP_INSTR;
+            reg_vals[8]  <= NOP_INSTR; 
             reg_vals[9]  <= NOP_INSTR; 
-            reg_vals[10] <= JMP_INSTR; 
-            reg_vals[11] <= DEC_INSTR; 
+            reg_vals[10] <= NOP_INSTR; 
+            reg_vals[11] <= NOP_INSTR; 
+            reg_vals[12] <= NOP_INSTR; 
+            reg_vals[13] <= NOP_INSTR; 
+            reg_vals[14] <= NOP_INSTR; 
+            reg_vals[15] <= NOP_INSTR;           
+        end else if (write_en_i) begin
+            reg_vals[addr_i] <= data_i;
+        end
+    end
+
+    always @(*) begin
+        if (read_en_i)
+            data_o = reg_vals[addr_i];
+        else
+            data_o = 0;
+    end
+    
+
+    /*  
+    always @(*) begin
+        // default: hold previous values
+        for (i = 0; i < MEMORY_REGISTERS; i = i + 1) begin
+            next_reg_vals[i] = reg_vals[i];
+        end
+
+        // default output
+        data_o = {REGISTER_WIDTH{1'b0}};
+
+        // write path
+        if (write_en_i)
+            next_reg_vals[addr_i] = data_i;
+
+        // read path (synchronous read emulation)
+        if (read_en_i)
+            data_o = reg_vals[addr_i];
+    end
+
+    always @(posedge clk_i or posedge reset_i) begin
+        if (reset_i) begin
+            reg_vals[0]  <= OUT_INSTR; 
+            reg_vals[1]  <= INC_INSTR;
+            reg_vals[2]  <= JMP_INSTR; 
+            reg_vals[3]  <= 4'b0000;
+            reg_vals[4]  <= NOP_INSTR; 
+            reg_vals[5]  <= NOP_INSTR; 
+            reg_vals[6]  <= NOP_INSTR; 
+            reg_vals[7]  <= NOP_INSTR;
+            reg_vals[8]  <= NOP_INSTR; 
+            reg_vals[9]  <= NOP_INSTR; 
+            reg_vals[10] <= NOP_INSTR; 
+            reg_vals[11] <= NOP_INSTR; 
             reg_vals[12] <= NOP_INSTR; 
             reg_vals[13] <= NOP_INSTR; 
             reg_vals[14] <= NOP_INSTR; 
@@ -84,4 +116,6 @@ module reg_memory #(
             end
         end
     end
+    */
+    
 endmodule

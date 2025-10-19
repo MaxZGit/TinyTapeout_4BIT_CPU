@@ -1,6 +1,6 @@
-
 # store this file in the root folder of your project.
 # use: bash run_tb.sh <tb/tb_file.v>
+
 
 if [ $# -ne 1 ]; then
     echo "Usage: $0 <testbench_file.v>"
