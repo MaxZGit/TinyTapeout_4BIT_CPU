@@ -113,7 +113,7 @@ module uart_rx #(
         next_rx_data = rx_data;
 
         if (rx_state == stRECEIVING) begin
-            if (baud_counter_val = BAUD_COUNTS_PER_BIT_HALF)
+            if (baud_counter_val == BAUD_COUNTS_PER_BIT_HALF)
                 next_rx_data = {rx_i, rx_data[UART_DATA_LENGTH - 1:1]};
         end
     end
