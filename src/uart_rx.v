@@ -91,8 +91,7 @@ module uart_rx #(
         if (rx_state == stIDLE || baud_counter_val >= BAUD_COUNTS_PER_BIT)
             next_baud_counter_val = {BAUD_RATE_COUNTER_BITWIDTH{1'b0}};
         else  // if counter is smaller (and not in idle state), add one
-            next_baud_counter_val = baud_counter_val + 1;
-        else 
+            next_baud_counter_val = baud_counter_val + 1; 
     end
 
     // rx_counter_val logic
