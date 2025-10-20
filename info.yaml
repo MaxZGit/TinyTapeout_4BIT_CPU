@@ -26,6 +26,7 @@ project:
     - "control_unit.v"
     - "cpu.v"
     - "uart_rx.v"
+    - "programmer.v"
     - "cpu_board.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
