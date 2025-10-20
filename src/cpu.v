@@ -3,7 +3,14 @@ module cpu #(
     parameter OPERATION_CODE_WIDTH = 3,
     parameter REGISTER_WIDTH = 4,
     parameter MEMORY_ADDRESS_WIDTH = 4,
-    parameter MEMORY_REGISTERS = 16
+    parameter MEMORY_REGISTERS = 16,
+    
+    parameter UART_BAUD_RATE = 19200,
+    parameter UART_DATA_LENGTH = 8,
+    parameter CLK_FREQ = 10000000, //10 MHz
+    parameter RX_COUNTER_BITWIDTH = 3,
+    parameter BAUD_COUNTS_PER_BIT = 521,
+    parameter BAUD_RATE_COUNTER_BITWIDTH = 10
 ) (
     input wire clk_i,
     input wire reset_i,
@@ -14,11 +21,11 @@ module cpu #(
     // OUT
     output wire [REGISTER_WIDTH - 1 : 0] out_pins_o,
 
-    // Boot Loader
-    input wire bl_programm_i,
-    input wire [REGISTER_WIDTH - 1 : 0] bl_data_i,
-    input wire [MEMORY_ADDRESS_WIDTH - 1 : 0] bl_address_i,
-    input wire bl_write_en_mem_i
+    // Programmer
+    input wire p_programm_i,
+
+    // UART RX
+    input wire rx_i
 );
 
     // ###############################################
@@ -69,6 +76,15 @@ module cpu #(
     wire [CRA_BIT_NUMB-1:0] result_alu_cpu;
     wire carry_alu_cpu;
 
+    // Programmer
+    wire p_active;
+    wire [REGISTER_WIDTH-1:0] p_data;
+    wire [MEMORY_ADDRESS_WIDTH-1:0] p_addr;
+    wire p_enable_mem_write;
+
+    // UART RX
+    wire [UART_DATA_LENGTH-1:0] rx_data;
+    wire rx_data_valid_strb;
 
     // ###############################################
     //                  SIGNAL ROUTING
@@ -263,10 +279,51 @@ module cpu #(
         .result_alu_i(result_alu_cpu),
         .carry_alu_i(carry_alu_cpu),
 
-        // Boot Loader
-        .bl_programm_i(bl_programm_i),
-        .bl_data_i(bl_data_i),
-        .bl_address_i(bl_address_i),
-        .bl_write_en_mem_i(bl_write_en_mem_i)
+        // Programmer
+        .p_programm_i(p_programm_i),
+        .p_data_i(p_data),
+        .p_address_i(p_addr),
+        .p_write_en_mem_i(p_enable_mem_write),
+        .p_active_o(p_active)
+    );
+
+    // -----------------------------------------------
+    // Programmer Unit
+    // -----------------------------------------------
+    programmer #(
+        .UART_DATA_LENGTH(UART_DATA_LENGTH),
+        .REGISTER_WIDTH(REGISTER_WIDTH),
+        .MEMORY_ADDRESS_WIDTH(MEMORY_ADDRESS_WIDTH)
+    ) prog (
+        .clk_i(clk_i),
+        .reset_i(reset_i),
+        
+        .active_i(p_active),
+        .uart_data_i(rx_data),
+        .data_valid_strb_i(rx_data_valid_strb),
+
+        .data_o(p_data),
+        .addr_o(p_addr),
+        .enable_write_memory_o(p_enable_mem_write)
+    );
+
+    // -----------------------------------------------
+    // UART RX Unit
+    // -----------------------------------------------
+    uart_rx #(
+        .UART_BAUD_RATE(UART_BAUD_RATE),
+        .UART_DATA_LENGTH(UART_DATA_LENGTH),
+        .CLK_FREQ(CLK_FREQ),
+        .RX_COUNTER_BITWIDTH(RX_COUNTER_BITWIDTH),
+        .BAUD_COUNTS_PER_BIT(BAUD_COUNTS_PER_BIT),
+        .BAUD_RATE_COUNTER_BITWIDTH(BAUD_RATE_COUNTER_BITWIDTH)
+    ) rx (
+        .clk_i(clk_i),
+        .reset_i(reset_i),
+
+        .rx_i(rx_i),
+
+        .data_o(rx_data),
+        .data_valid_strb_o(rx_data_valid_strb)
     );
 endmodule

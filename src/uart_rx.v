@@ -14,7 +14,7 @@ module uart_rx #(
 
     // OUT
     output wire [UART_DATA_LENGTH-1:0] data_o,
-    output reg data_valid_strb
+    output reg data_valid_strb_o
 );
 
     // ###########################################################
@@ -120,9 +120,9 @@ module uart_rx #(
     // data valid strobe logic
     always @(rx_state, next_rx_state) begin
         if (rx_state == stSTOPBIT && next_rx_state == stIDLE)
-            data_valid_strb = 1;
+            data_valid_strb_o = 1;
         else
-            data_valid_strb = 0;
+            data_valid_strb_o = 0;
     end
 
     assign data_o = rx_data;

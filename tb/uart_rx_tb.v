@@ -3,7 +3,7 @@
 
 `include "src/uart_rx.v"
 
-module cpu_tb;
+module uart_rx_tb;
     
     localparam UART_BAUD_RATE = 19200;
     localparam UART_DATA_LENGTH = 8;
@@ -38,7 +38,7 @@ module cpu_tb;
         .rx_i(rx_tb),
 
         .data_o(rx_data_tb),
-        .data_valid_strb(data_valid_strb_tb)
+        .data_valid_strb_o(data_valid_strb_tb)
     );
 
     initial begin

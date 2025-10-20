@@ -1,43 +1,57 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Mon Oct 20 09:42:12 2025
+[*] Mon Oct 20 13:28:11 2025
 [*]
 [dumpfile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/uart_rx_tb.vcd"
-[dumpfile_mtime] "Mon Oct 20 09:36:03 2025"
-[dumpfile_size] 2487383
+[dumpfile_mtime] "Mon Oct 20 13:27:53 2025"
+[dumpfile_size] 4399592
 [savefile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/uart_rx_waveform.gtkw"
 [timestart] 0
 [size] 1536 875
 [pos] -27 -24
-*-21.000000 2890000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-[treeopen] cpu_tb.
+*-28.799999 2112000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[markername] AA
+[markername] BB
+[markername] CC
+[markername] DD
+[markername] EE
+[markername] FF
+[markername] GG
+[markername] HH
+[markername] II
+[markername] JJ
+[markername] KK
+[markername] LL
+[markername] MM
+[markername] NN
+[markername] OO
+[markername] PP
+[markername] QQ
+[markername] RR
+[markername] SS
+[markername] TT
+[markername] UU
+[markername] VV
+[markername] WW
+[markername] XX
+[markername] YY
+[markername] ZZ
+[treeopen] uart_rx_tb.
 [sst_width] 297
 [signals_width] 198
 [sst_expanded] 1
-[sst_vpaned_height] 245
+[sst_vpaned_height] 403
 @200
 -tb
 @28
-cpu_tb.clk_tb
-cpu_tb.reset_tb
-cpu_tb.rx_tb
-cpu_tb.data_valid_strb_tb
+uart_rx_tb.clk_tb
+uart_rx_tb.data
+uart_rx_tb.rx_tb
 @200
 -uart_rx
-@28
-cpu_tb.dut.rx_i
 @24
-cpu_tb.dut.rx_state[1:0]
-cpu_tb.dut.stIDLE
-cpu_tb.dut.stSTARTBIT
-cpu_tb.dut.stRECEIVING
-cpu_tb.dut.stSTOPBIT
-cpu_tb.dut.baud_counter_val[9:0]
-cpu_tb.dut.rx_counter_val[2:0]
-@28
-cpu_tb.dut.rx_data[7:0]
-cpu_tb.dut.data_o[7:0]
+uart_rx_tb.dut.rx_state[1:0]
 @29
-cpu_tb.dut.data_valid_strb
+uart_rx_tb.dut.rx_data[7:0]
 [pattern_trace] 1
 [pattern_trace] 0

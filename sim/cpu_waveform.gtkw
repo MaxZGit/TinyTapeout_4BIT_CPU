@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Sun Oct 19 20:01:44 2025
+[*] Mon Oct 20 15:52:59 2025
 [*]
 [dumpfile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/cpu_tb.vcd"
-[dumpfile_mtime] "Sun Oct 19 20:01:05 2025"
-[dumpfile_size] 28773
+[dumpfile_mtime] "Mon Oct 20 15:50:05 2025"
+[dumpfile_size] 2523326
 [savefile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/cpu_waveform.gtkw"
 [timestart] 0
 [size] 1536 875
 [pos] -27 -24
-*-18.600000 377000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+*-30.299999 4370000000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -41,7 +41,7 @@
 [sst_width] 297
 [signals_width] 248
 [sst_expanded] 1
-[sst_vpaned_height] 524
+[sst_vpaned_height] 399
 @200
 -testbench
 @28
@@ -51,6 +51,7 @@ cpu_tb.clk_tb
 cpu_tb.in_pins_tb[3:0]
 @28
 cpu_tb.out_pins_tb[3:0]
+cpu_tb.p_programm_tb
 @200
 -control unit
 @24
@@ -101,7 +102,7 @@ cpu_tb.dut.opnd_reg.write_en_i
 cpu_tb.dut.opnd_reg.reg_val[3:0]
 @200
 -a_reg
-@29
+@28
 cpu_tb.dut.a_reg.in_i[3:0]
 cpu_tb.dut.a_reg.write_en_i
 cpu_tb.dut.a_reg.reg_val[3:0]
@@ -125,6 +126,46 @@ cpu_tb.dut.ir_reg.reg_val[3:0]
 cpu_tb.dut.out_reg.in_i[3:0]
 cpu_tb.dut.out_reg.write_en_i
 cpu_tb.dut.out_reg.reg_val[3:0]
+@200
+-programmer
+@29
+cpu_tb.dut.prog.rx_input[7:0]
+@28
+cpu_tb.dut.prog.active_i
+cpu_tb.dut.prog.data_valid_strb_i
+@24
+cpu_tb.dut.prog.state[1:0]
+[color] 3
+cpu_tb.dut.prog.stIDLE
+[color] 3
+cpu_tb.dut.prog.stFIRST
+[color] 3
+cpu_tb.dut.prog.stSECOND
+@22
+cpu_tb.dut.prog.addr[3:0]
+cpu_tb.dut.prog.addr_o[3:0]
+cpu_tb.dut.prog.data_o[3:0]
+@28
+cpu_tb.dut.prog.enable_write_memory_o
+@200
+-uart rx
+@28
+cpu_tb.dut.rx.rx_i
+@24
+cpu_tb.dut.rx.rx_state[1:0]
+[color] 3
+cpu_tb.dut.rx.stIDLE
+[color] 3
+cpu_tb.dut.rx.stSTARTBIT
+[color] 3
+cpu_tb.dut.rx.stRECEIVING
+[color] 3
+cpu_tb.dut.rx.stSTOPBIT
+cpu_tb.dut.rx.baud_counter_val[9:0]
+cpu_tb.dut.rx.rx_counter_val[2:0]
+@28
+cpu_tb.dut.rx.data_o[7:0]
+cpu_tb.dut.rx.data_valid_strb_o
 @200
 -memory
 @28

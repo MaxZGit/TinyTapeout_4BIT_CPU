@@ -50,10 +50,11 @@ module control_unit #(
     input wire carry_alu_i,
 
     // Boot Loader
-    input wire bl_programm_i,
-    input wire [REGISTER_WIDTH-1:0] bl_data_i,
-    input wire [MEMORY_ADDRESS_WIDTH-1:0] bl_address_i,
-    input wire bl_write_en_mem_i
+    input wire p_programm_i,
+    input wire [REGISTER_WIDTH-1:0] p_data_i,
+    input wire [MEMORY_ADDRESS_WIDTH-1:0] p_address_i,
+    input wire p_write_en_mem_i,
+    output wire p_active_o
 );
 
     // ###########################################################
@@ -166,14 +167,14 @@ module control_unit #(
 
         case (cu_state)
             stRESET: begin
-                if (bl_programm_i)
+                if (p_programm_i)
                     next_cu_state = stPROGRAMM;
                 else
                     next_cu_state = stFETCH_I;
             end
 
             stPROGRAMM: begin
-                if (bl_programm_i)
+                if (p_programm_i)
                     next_cu_state = stPROGRAMM;
                 else
                     next_cu_state = stFETCH_I;
@@ -209,14 +210,14 @@ module control_unit #(
             end
 
             stEXEC_ALU: begin
-                if (bl_programm_i)
+                if (p_programm_i)
                     next_cu_state = stPROGRAMM;
                 else
                     next_cu_state = stFETCH_I;
             end
 
             stEXEC: begin
-                if (bl_programm_i)
+                if (p_programm_i)
                     next_cu_state = stPROGRAMM;
                 else
                     next_cu_state = stFETCH_I;
@@ -227,6 +228,8 @@ module control_unit #(
             end
         endcase
     end
+
+    assign p_active_o = cu_state == stPROGRAMM;
 
     // ###########################################################
     //               SET CONTROL SINGALS LOGIC
@@ -268,9 +271,14 @@ module control_unit #(
         case (cu_state)
             stPROGRAMM: begin
                 // connect boot loader to memory
-                write_en_mem_o = bl_write_en_mem_i;
-                addr_mem_o = bl_address_i;
-                write_data_mem_o = bl_data_i;
+                write_en_mem_o = p_write_en_mem_i;
+                addr_mem_o = p_address_i;
+                write_data_mem_o = p_data_i;
+
+                //reset state
+                next_programm_counter = {MEMORY_ADDRESS_WIDTH{1'b0}};
+                write_en_a_o = 1;
+                write_data_a_o = {REGISTER_WIDTH{1'b0}};
             end
 
             stFETCH_I: begin
