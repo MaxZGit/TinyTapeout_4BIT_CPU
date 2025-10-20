@@ -25,7 +25,7 @@ module alu #(
     // OPERATION CODE MUS
     always @(sum, xor_result, and_result, or_result, oc_i) begin
         // standard assignment
-        result_o = {ALU_BIT_WIDTH{1'bz}};
+        result_o = {ALU_BIT_WIDTH{1'b0}};
 
         if (oc_i[2] == 1'b1) begin
             // Add or Substract
@@ -36,7 +36,7 @@ module alu #(
                 2'b01: result_o = xor_result; // XOR
                 2'b10: result_o = and_result; // AND
                 2'b11: result_o = or_result; // OR
-                default: result_o = {ALU_BIT_WIDTH{1'bz}}; // optional
+                default: result_o = {ALU_BIT_WIDTH{1'b0}}; // optional
             endcase
         end
     end
