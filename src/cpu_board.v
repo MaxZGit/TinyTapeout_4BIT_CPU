@@ -32,7 +32,7 @@ module tt_um_four_bit_cpu_top_level(
         .in_pins_i(ui_in[3:0]),
         .out_pins_o(uo_out[3:0]),
 
-        .bl_programm_i(ui_in[2]),
+        .p_programm_i(ui_in[2]),
         .rx_i(ui_in[3])
     );
 endmodule
