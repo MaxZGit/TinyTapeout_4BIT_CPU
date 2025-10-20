@@ -33,7 +33,7 @@ module reg_memory #(
     localparam OUT_INSTR = 4'b1110;
     localparam LDI_INSTR = 4'b1111;
 
-    integer i;
+    //integer i;
 
     reg [REGISTER_WIDTH-1:0] reg_vals [0:MEMORY_REGISTERS-1];
     //reg [REGISTER_WIDTH-1:0] next_reg_vals [0:MEMORY_REGISTERS-1];

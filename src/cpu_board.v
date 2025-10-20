@@ -15,23 +15,27 @@ module tt_um_four_bit_cpu_top_level(
     localparam MEMORY_ADDRESS_WIDTH = 4;
     localparam MEMORY_REGISTERS = 16;
 
-  cpu #(
-        .CRA_BIT_NUMB(CRA_BIT_NUMB),
-        .OPERATION_CODE_WIDTH(OPERATION_CODE_WIDTH),
-        .REGISTER_WIDTH(REGISTER_WIDTH),
-        .MEMORY_ADDRESS_WIDTH(MEMORY_ADDRESS_WIDTH),
-        .MEMORY_REGISTERS(MEMORY_REGISTERS)
-    ) dut (
-        .clk_i(clk),
-        .reset_i(rst_n),
+    assign uo_out[7:4] = 4'b0000;
+    assign uio_oe[7:0] = 8'b00000000;
+    assign uio_out[7:0] = 8'b00000000;
+    
+    cpu #(
+            .CRA_BIT_NUMB(CRA_BIT_NUMB),
+            .OPERATION_CODE_WIDTH(OPERATION_CODE_WIDTH),
+            .REGISTER_WIDTH(REGISTER_WIDTH),
+            .MEMORY_ADDRESS_WIDTH(MEMORY_ADDRESS_WIDTH),
+            .MEMORY_REGISTERS(MEMORY_REGISTERS)
+        ) dut (
+            .clk_i(clk),
+            .reset_i(~rst_n),
 
-        .in_pins_i(ui_in[3:0]),
-        .out_pins_o(uo_out[3:0]),
+            .in_pins_i(ui_in[3:0]),
+            .out_pins_o(uo_out[3:0]),
 
-        .bl_programm_i(ui_in[4]),
-        .bl_data_i(4'b0000),
-        .bl_address_i(4'b0000),
-        .bl_write_en_mem_i(1'b0)
-    );
+            .bl_programm_i(ui_in[4]),
+            .bl_data_i(4'b0000),
+            .bl_address_i(4'b0000),
+            .bl_write_en_mem_i(1'b0)
+        );
 
 endmodule
