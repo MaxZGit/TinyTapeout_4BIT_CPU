@@ -14,7 +14,7 @@ module uart_rx #(
 
     // OUT
     output wire [UART_DATA_LENGTH-1:0] data_o,
-    output wire data_valid_strb
+    output reg data_valid_strb
 );
 
     // ###########################################################
@@ -71,13 +71,12 @@ module uart_rx #(
 
             stRECEIVING: begin
                 // store data at half baud counter val
-                if (rx_counter_val == UART_DATA_LENGTH - 1)
+                if (rx_counter_val == UART_DATA_LENGTH - 1 && baud_counter_val == BAUD_COUNTS_PER_BIT)
                     next_rx_state = stSTOPBIT;
             end
 
             stSTOPBIT: begin
-                // wait for 1 bit
-                if (baud_counter_val == BAUD_COUNTS_PER_BIT)
+                if (baud_counter_val == BAUD_COUNTS_PER_BIT_HALF)
                     next_rx_state = stIDLE;
             end
         endcase
@@ -103,7 +102,7 @@ module uart_rx #(
             if (baud_counter_val == BAUD_COUNTS_PER_BIT) // count up after a full bit
                 next_rx_counter_val = rx_counter_val + 1;
         end else begin // reset if not in receiving state
-            next_baud_counter_val = {BAUD_RATE_COUNTER_BITWIDTH{1'b0}};
+            next_rx_counter_val = {BAUD_RATE_COUNTER_BITWIDTH{1'b0}};
         end 
     end
 
@@ -118,7 +117,6 @@ module uart_rx #(
         end
     end
 
-    // TODO MAYBE MAKE STROBE EVERY 4 BIT TO STORE IN MEMORY
     // data valid strobe logic
     always @(rx_state, next_rx_state) begin
         if (rx_state == stSTOPBIT && next_rx_state == stIDLE)
@@ -137,7 +135,7 @@ module uart_rx #(
         if (reset_i) begin
             rx_counter_val <= {RX_COUNTER_BITWIDTH{1'b0}};
             baud_counter_val <= {BAUD_RATE_COUNTER_BITWIDTH{1'b0}};
-            rx_state <= stIDLE
+            rx_state <= stIDLE;
             rx_data <= {UART_DATA_LENGTH{1'b0}};
         end else begin
             rx_counter_val <= next_rx_counter_val;
