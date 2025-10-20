@@ -117,5 +117,4 @@ module reg_memory #(
         end
     end
     */
-    
 endmodule
