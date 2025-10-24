@@ -47,7 +47,7 @@ module cpu_tb;
 
     reg reset_tb = 1'b1;
     reg clk_tb = 1'b1;
-    reg [REGISTER_WIDTH - 1:0] in_pins_tb = 4'b0000;
+    reg [REGISTER_WIDTH - 1:0] in_pins_tb = 4'b0010;
     wire [REGISTER_WIDTH - 1:0] out_pins_tb;
 
     reg p_programm_tb = 0;
@@ -87,22 +87,23 @@ module cpu_tb;
         end
 
         data_array = {
+            IN_INSTR,
             OUT_INSTR,
-            DEC_INSTR,
+            ST_INSTR,
+            4'b1111,
+            ADD_INSTR,
+            4'b1111,
+            JC_INSTR,
+            4'b1010,
+
             JMP_INSTR,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000,
-            4'b0000
+            4'b0001,
+            INC_INSTR,
+            JMP_INSTR,
+            4'b0001,
+            NOP_INSTR,
+            NOP_INSTR,
+            4'b0001
         };
 
         reset_tb = 1'b1; // reset
