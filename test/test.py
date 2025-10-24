@@ -27,19 +27,19 @@ async def test_project(dut):
 
     dut._log.info("Test project behavior")
 
-    assert dut.ui_out == 0
+    assert dut.ui_out.value == 0
     # it takes 11 clks to see the next output
     await ClockCycles(dut.clk, 11)
 
-    assert dut.ui_out == 1
+    assert dut.ui_out.value == 1
     # it takes 11 clks to see the next output
     await ClockCycles(dut.clk, 11)
 
-    assert dut.ui_out == 2
+    assert dut.ui_out.value == 2
     # it takes 11 clks to see the next output
     await ClockCycles(dut.clk, 11)
 
-    assert dut.ui_out == 3
+    assert dut.ui_out.value == 3
     # it takes 11 clks to see the next output
     await ClockCycles(dut.clk, 11)
 
