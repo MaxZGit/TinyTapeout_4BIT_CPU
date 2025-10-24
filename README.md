@@ -42,4 +42,5 @@ The GitHub action will automatically build the ASIC files using [LibreLane](http
   - Bluesky [@tinytapeout.com](https://bsky.app/profile/tinytapeout.com)
 
 
-[[TODO.md]]
+# TODO
+- [TODO](TODO.md)
