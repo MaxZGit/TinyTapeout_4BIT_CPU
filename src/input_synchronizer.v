@@ -7,6 +7,8 @@ module input_synchronizer #(
     output wire output_o
 );
 
+    integer  i;
+
     reg [REGISTER_COUNT-1:0] sync_values;
     reg [REGISTER_COUNT-1:0] next_sync_values;
 
@@ -17,7 +19,7 @@ module input_synchronizer #(
         next_sync_values = sync_values;
         next_sync_values[0] = input_i;
         // shift to next FF
-        for (integer i = 1; i < REGISTER_COUNT; i = i + 1) begin
+        for (i = 1; i < REGISTER_COUNT; i = i + 1) begin
             next_sync_values[i] = sync_values[i-1];
         end
     end

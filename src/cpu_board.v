@@ -30,8 +30,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_4 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[4]),
         .output_o(ui_in_4_sync)
     );
@@ -39,8 +39,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_5 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[5]),
         .output_o(ui_in_5_sync)
     );
@@ -48,8 +48,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_6 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[6]),
         .output_o(ui_in_6_sync)
     );
@@ -57,8 +57,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_7 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[7]),
         .output_o(ui_in_7_sync)
     );
@@ -66,8 +66,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_2 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[2]),
         .output_o(ui_in_2_sync)
     );
@@ -75,8 +75,8 @@ module tt_um_four_bit_cpu_top_level(
     input_synchronizer #(
         .REGISTER_COUNT(REGISTER_COUNT)
     ) is_in_3 (
-        .clk_i(clk_tb),
-        .reset_i(reset_tb),
+        .clk_i(clk),
+        .reset_i(~rst_n),
         .input_i(ui_in[3]),
         .output_o(ui_in_3_sync)
     );
