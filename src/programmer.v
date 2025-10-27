@@ -52,7 +52,7 @@ module programmer #(
     end
 
     // next state logic
-    always @(state, data_valid_strb_i, active_i, addr) begin
+    always @(state, data_valid_strb_i, active_i, addr, uart_data_i) begin
         //default assignments
         next_state = state;
         data_o = {MEMORY_ADDRESS_WIDTH{1'b0}};
