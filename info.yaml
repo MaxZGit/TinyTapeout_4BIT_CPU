@@ -17,6 +17,7 @@ project:
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
+    - "input_synchronizer.v"
     - "half_adder.v"
     - "full_adder.v"
     - "carry_ripple_adder.v"
