@@ -13,6 +13,7 @@ module tt_um_four_bit_cpu_top_level(
     localparam REGISTER_WIDTH = 4;
     localparam MEMORY_ADDRESS_WIDTH = 4;
     localparam MEMORY_REGISTERS = 16;
+    localparam REGISTER_COUNT = 2;
 
     assign uo_out[7:4] = 4'b0000;
     assign uio_oe[7:0] = 8'b00000000;
