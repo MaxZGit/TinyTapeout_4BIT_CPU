@@ -1,0 +1,34 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Mon Oct 27 18:22:57 2025
+[*]
+[dumpfile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/input_synchronizer_tb.vcd"
+[dumpfile_mtime] "Mon Oct 27 18:21:04 2025"
+[dumpfile_size] 1487
+[savefile] "/foss/designs/TinyTapeout_4Bit_CPU/sim/input_synchronizer.gtkw"
+[timestart] 0
+[size] 1536 875
+[pos] -27 -24
+*-14.700000 55000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[treeopen] input_synchronizer_tb.
+[sst_width] 297
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 245
+@200
+-tb
+@28
+input_synchronizer_tb.clk_tb
+input_synchronizer_tb.reset_tb
+input_synchronizer_tb.input_tb
+input_synchronizer_tb.output_tb
+@200
+-synchronizer
+@28
+input_synchronizer_tb.dut.input_i
+input_synchronizer_tb.dut.sync_values[2:0]
+input_synchronizer_tb.dut.next_sync_values[2:0]
+@29
+input_synchronizer_tb.dut.output_o
+[pattern_trace] 1
+[pattern_trace] 0
